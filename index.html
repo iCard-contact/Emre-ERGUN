@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>iCard - Emre Ergun</title>
+<title>iCard - Emre ERGUN</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
@@ -31,7 +31,7 @@ body{
   padding:40px 20px 40px;
 }
 
-/* PHOTO flottante réduite 25% */
+/* PHOTO */
 .photo-float{
   width:219px;
   height:219px;
@@ -62,6 +62,7 @@ body{
   margin-bottom:40px;
 }
 
+/* TEXT */
 .icard-badge{
   display:inline-flex;
   align-items:center;
@@ -118,8 +119,10 @@ body{
   font-size:14px;
   color:var(--text-muted);
   margin-bottom:16px;
+  line-height:1.5;
 }
 
+/* CONTACT */
 .contact-item{
   display:flex;
   gap:12px;
@@ -140,17 +143,18 @@ body{
   text-decoration:none;
 }
 
+/* BUTTONS */
 .buttons{
   display:grid;
-  grid-template-columns:1.2fr 1fr;
+  grid-template-columns:1fr 1fr;
   gap:10px;
   margin:18px 0 10px;
 }
 
 .btn{
   border-radius:999px;
-  padding:10px;
-  font-size:14px;
+  padding:10px 12px;
+  font-size:13px;
   font-weight:500;
   border:0;
   cursor:pointer;
@@ -158,6 +162,9 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
+  text-align:center;
+  white-space:nowrap;
+  width:100%;
 }
 
 .btn-primary{
@@ -171,6 +178,7 @@ body{
   color:#fff;
 }
 
+/* FOOTER */
 .footer{
   display:flex;
   justify-content:space-between;
@@ -178,7 +186,7 @@ body{
   color:#6b7280;
 }
 
-/* LOGO BAS */
+/* LOGO */
 .logo-footer{
   width:100%;
   max-width:420px;
@@ -197,12 +205,11 @@ body{
 
 <body>
 
-<!-- PHOTO -->
 <div class="photo-float">
-  <img src="Photo.jpg" alt="Berenkan Cinki">
+  <!-- Garde Photo.jpg si tu utilises la même photo. Sinon remplace par le bon fichier. -->
+  <img src="Photo.jpg" alt="Emre ERGUN">
 </div>
 
-<!-- CARD -->
 <div class="card">
 
   <div class="icard-badge">
@@ -211,8 +218,8 @@ body{
   </div>
 
   <div class="name-block">
-    <h1>Emre Ergun</h1>
-    <p>Acheteur chez Demathieu Bard Construction </p>
+    <h1>Emre ERGUN</h1>
+    <p>Acheteur chez Demathieu Bard Construction</p>
   </div>
 
   <a class="chip" href="https://icard-contact.github.io/Emre-ERGUN/emre.vcf">Tap to save</a>
@@ -220,7 +227,7 @@ body{
   <div class="divider"></div>
 
   <p class="info">
-    N° client : 260110 0002<br>
+    N° client : 260110 0001<br>
     Restons en contact pour de futures collaborations.
   </p>
 
@@ -241,7 +248,7 @@ body{
   <div class="contact-item">
     <div class="contact-label">LINKEDIN</div>
     <div class="contact-value">
-      <a href="https://www.linkedin.com/in/emre-ergun-bb212422a/" target="_blank">
+      <a href="https://www.linkedin.com/in/emre-ergun-bb212422a/" target="_blank" rel="noreferrer">
         Emre ERGUN
       </a>
     </div>
@@ -250,8 +257,8 @@ body{
   <div class="contact-item">
     <div class="contact-label">SITE</div>
     <div class="contact-value">
-      <a href="https://icard-contact.github.io/Emre-ERGUN/" target="_blank">
-        https://icard-contact.github.io/Emre ERGUN/
+      <a href="https://icard-contact.github.io/Emre-ERGUN/" target="_blank" rel="noreferrer">
+        https://icard-contact.github.io/Emre-ERGUN/
       </a>
     </div>
   </div>
@@ -272,7 +279,6 @@ body{
 
 </div>
 
-<!-- LOGO BAS -->
 <div class="logo-footer">
   <img src="5.png" alt="Logo iCard">
 </div>
