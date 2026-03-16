@@ -17,10 +17,10 @@
   --text:#f0f2f8;
   --muted:rgba(240,242,248,.55);
   --hint:rgba(240,242,248,.32);
-  --blue:#3b6fd4;
-  --blue2:#6e9aec;
-  --blueBg:rgba(59,111,212,.16);
-  --blueBd:rgba(59,111,212,.32);
+  --orange:#f36421;
+  --orange2:#f8935a;
+  --orangeBg:rgba(243,100,33,.16);
+  --orangeBd:rgba(243,100,33,.35);
   --green:#22c55e;
   --max:400px;
   --r:24px;
@@ -85,7 +85,7 @@ body::before{
   background:rgba(7,9,15,.55);
   backdrop-filter:blur(12px);
   -webkit-backdrop-filter:blur(12px);
-  border:1px solid var(--blueBd);
+  border:1px solid var(--orangeBd);
   border-radius:999px;
   padding:6px 12px 6px 8px;
 }
@@ -142,13 +142,13 @@ body::before{
 .company-pill{
   display:inline-flex;align-items:center;gap:6px;
   margin-top:10px;
-  background:var(--blueBg);
-  border:1px solid var(--blueBd);
+  background:var(--orangeBg);
+  border:1px solid var(--orangeBd);
   border-radius:999px;
   padding:4px 11px 4px 8px;
 }
-.company-dot{width:6px;height:6px;border-radius:50%;background:var(--blue2);}
-.company-name{font-size:11.5px;font-weight:500;color:var(--blue2);letter-spacing:.3px;}
+.company-dot{width:6px;height:6px;border-radius:50%;background:var(--orange2);}
+.company-name{font-size:11.5px;font-weight:500;color:var(--orange2);letter-spacing:.3px;}
 
 /* ── BODY ── */
 .body{padding:20px 16px 32px;}
@@ -173,8 +173,8 @@ body::before{
 .lico{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;flex:0 0 38px;}
 .lico svg{width:18px;height:18px;fill:#fff;}
 .lico-email{background:rgba(239,68,68,.16);border:1px solid rgba(239,68,68,.28);}
-.lico-phone{background:rgba(34,197,94,.16);border:1px solid rgba(34,197,94,.28);}
-.lico-linkedin{background:var(--blueBg);border:1px solid var(--blueBd);}
+.lico-sms{background:rgba(34,197,94,.16);border:1px solid rgba(34,197,94,.28);}
+.lico-linkedin{background:rgba(10,102,194,.18);border:1px solid rgba(10,102,194,.38);}
 .lico-web{background:rgba(34,211,238,.13);border:1px solid rgba(34,211,238,.24);}
 .ltxt{flex:1;min-width:0;}
 .ltitle{font-size:13.5px;font-weight:600;line-height:1.1;}
@@ -184,7 +184,7 @@ body::before{
 /* Séparateur + note */
 .sep{
   width:32px;height:1px;
-  background:linear-gradient(90deg,var(--blue),transparent);
+  background:linear-gradient(90deg,var(--orange),transparent);
   margin:18px 0;
 }
 .note{
@@ -202,16 +202,16 @@ body::before{
 .cta{
   display:flex;align-items:center;justify-content:center;gap:10px;
   width:100%;padding:15px 18px;border-radius:999px;
-  background:linear-gradient(135deg, rgba(59,111,212,.80), rgba(59,111,212,.60));
-  border:1px solid rgba(59,111,212,.55);
+  background:linear-gradient(135deg, rgba(243,100,33,.85), rgba(200,82,26,.75));
+  border:1px solid rgba(243,100,33,.55);
   color:#fff;text-decoration:none;
   font-weight:600;font-size:14px;letter-spacing:.3px;
-  box-shadow:0 8px 28px rgba(59,111,212,.25);
+  box-shadow:0 8px 28px rgba(243,100,33,.25);
   transition:background .15s, box-shadow .15s;
 }
 .cta:hover{
-  background:linear-gradient(135deg, rgba(59,111,212,.95), rgba(59,111,212,.75));
-  box-shadow:0 12px 36px rgba(59,111,212,.38);
+  background:linear-gradient(135deg, rgba(243,100,33,1), rgba(200,82,26,.95));
+  box-shadow:0 12px 36px rgba(243,100,33,.40);
 }
 .cta svg{width:18px;height:18px;fill:#fff;}
 
@@ -264,13 +264,11 @@ body::before{
     <img class="photo" src="Photo.jpg" alt="Emre Ergun"/>
     <div class="hero-fade"></div>
 
-    <!-- Badge statut — haut gauche -->
     <div class="badge-top animate a1">
       <div class="badge-dot"></div>
       <span class="badge-label">Acheteur</span>
     </div>
 
-    <!-- Logo iCard — haut droite, sans encadrement -->
     <div class="logo-hero animate a1">
       <img src="5.png" alt="iCard"/>
     </div>
@@ -296,9 +294,9 @@ body::before{
         <div class="ltxt"><div class="ltitle">Email</div><div class="lsub">emre.ergun@demathieu-bard.fr</div></div>
         <svg class="lchev" viewBox="0 0 24 24"><path fill="white" d="M9.29 6.71a1 1 0 011.42 0l5 5a1 1 0 010 1.42l-5 5a1 1 0 11-1.42-1.42L13.59 12 9.29 7.71a1 1 0 010-1.42z"/></svg>
       </a>
-      <a class="lcard animate a5" href="tel:+33786893127">
-        <div class="lico lico-phone"><svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg></div>
-        <div class="ltxt"><div class="ltitle">Téléphone</div><div class="lsub">+33 7 86 89 31 27</div></div>
+      <a class="lcard animate a5" href="sms:+33786893127">
+        <div class="lico lico-sms"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg></div>
+        <div class="ltxt"><div class="ltitle">Message</div><div class="lsub">+33 7 86 89 31 27</div></div>
         <svg class="lchev" viewBox="0 0 24 24"><path fill="white" d="M9.29 6.71a1 1 0 011.42 0l5 5a1 1 0 010 1.42l-5 5a1 1 0 11-1.42-1.42L13.59 12 9.29 7.71a1 1 0 010-1.42z"/></svg>
       </a>
       <a class="lcard animate a5" href="https://www.linkedin.com/in/emre-ergun-bb212422a/" target="_blank" rel="noreferrer">
@@ -306,9 +304,9 @@ body::before{
         <div class="ltxt"><div class="ltitle">LinkedIn</div><div class="lsub">Voir le profil de Emre Ergun</div></div>
         <svg class="lchev" viewBox="0 0 24 24"><path fill="white" d="M9.29 6.71a1 1 0 011.42 0l5 5a1 1 0 010 1.42l-5 5a1 1 0 11-1.42-1.42L13.59 12 9.29 7.71a1 1 0 010-1.42z"/></svg>
       </a>
-      <a class="lcard animate a6" href="https://icard-contact.github.io/Emre-ERGUN/" target="_blank" rel="noreferrer">
+      <a class="lcard animate a6" href="https://www.demathieu-bard.fr/" target="_blank" rel="noreferrer">
         <div class="lico lico-web"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm7.93 9h-3.17a15.6 15.6 0 00-1.12-5.05A8.02 8.02 0 0119.93 11zM12 4c.9 1.28 1.6 3.1 1.99 5H10.01C10.4 7.1 11.1 5.28 12 4zM4.07 13h3.17c.2 1.78.7 3.5 1.12 5.05A8.02 8.02 0 014.07 13zm3.17-2H4.07a8.02 8.02 0 014.29-5.05c-.5 1.55-.92 3.27-1.12 5.05zM12 20c-.9-1.28-1.6-3.1-1.99-5h3.98c-.39 1.9-1.09 3.72-1.99 5zm3.76-2.95c.5-1.55.92-3.27 1.12-5.05h3.17a8.02 8.02 0 01-4.29 5.05zM7.24 13h9.52c-.2 1.72-.67 3.42-1.12 5H8.36c-.45-1.58-.92-3.28-1.12-5zM8.36 6h7.28c.45 1.58.92 3.28 1.12 5H7.24c.2-1.72.67-3.42 1.12-5z"/></svg></div>
-        <div class="ltxt"><div class="ltitle">Site web</div><div class="lsub">icard-contact.github.io/Emre-ERGUN</div></div>
+        <div class="ltxt"><div class="ltitle">Site web</div><div class="lsub">demathieu-bard.fr</div></div>
         <svg class="lchev" viewBox="0 0 24 24"><path fill="white" d="M9.29 6.71a1 1 0 011.42 0l5 5a1 1 0 010 1.42l-5 5a1 1 0 11-1.42-1.42L13.59 12 9.29 7.71a1 1 0 010-1.42z"/></svg>
       </a>
     </div>
@@ -323,7 +321,6 @@ body::before{
       </a>
     </div>
 
-    <!-- Footer avec logo DBC agrandi -->
     <div class="footer-wrap animate a8">
       <div class="logo-dbc-footer">
         <img src="LOGO%20DBC.png" alt="Demathieu Bard Construction"/>
