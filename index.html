@@ -1,287 +1,340 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<title>iCard - Emre ERGUN</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>iCard – Emre Ergun</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
+*{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --accent:#2563eb;
-  --accent-soft:rgba(37,99,235,.2);
-  --text:#f9fafb;
-  --text-muted:#9ca3af;
-  --border:rgba(148,163,184,.35);
+  --bg:#07090f;
+  --surface:rgba(255,255,255,.055);
+  --stroke:rgba(255,255,255,.10);
+  --stroke2:rgba(255,255,255,.17);
+  --text:#f0f2f8;
+  --muted:rgba(240,242,248,.55);
+  --hint:rgba(240,242,248,.32);
+  --blue:#3b6fd4;
+  --blue2:#6e9aec;
+  --blueBg:rgba(59,111,212,.16);
+  --blueBd:rgba(59,111,212,.32);
+  --green:#22c55e;
+  --max:400px;
+  --r:24px;
 }
-
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
-}
-
+html,body{min-height:100%;background:var(--bg);}
 body{
-  min-height:100vh;
-  background:radial-gradient(circle at top,#1f2937 0,#020617 45%,#000 100%);
+  font-family:'DM Sans',sans-serif;
   color:var(--text);
   display:flex;
-  flex-direction:column;
-  align-items:center;
-  padding:40px 20px 40px;
+  justify-content:center;
+  padding:0;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:0;
+  opacity:.55;
+}
+.wrap{width:100%;max-width:var(--max);position:relative;z-index:1;}
+
+/* ── HERO ── */
+.hero{
+  position:relative;
+  width:100%;
+  height:420px;
+  overflow:hidden;
+  background:#111;
+}
+.hero img.photo{
+  position:absolute;
+  inset:-4px;
+  width:calc(100% + 8px);
+  height:calc(100% + 8px);
+  object-fit:cover;
+  object-position:center 10%;
+  filter:brightness(.86) contrast(1.05);
+  transform:scale(1.03);
+  transition:transform 6s ease;
+}
+.hero:hover img.photo{transform:scale(1.045);}
+.hero-fade{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,
+    rgba(7,9,15,.58) 0%,
+    rgba(7,9,15,.0) 26%,
+    rgba(7,9,15,.0) 52%,
+    rgba(7,9,15,.90) 84%,
+    rgba(7,9,15,1) 100%);
+  z-index:2;
 }
 
-/* PHOTO */
-.photo-float{
-  width:219px;
-  height:219px;
-  border-radius:32px;
-  overflow:hidden;
-  margin-bottom:-60px;
-  border:2px solid rgba(148,163,184,.45);
-  box-shadow:0 24px 55px rgba(0,0,0,.6);
-  background:#000;
+/* Badge statut — haut gauche */
+.badge-top{
+  position:absolute;
+  top:16px;left:16px;
+  z-index:5;
+  display:flex;align-items:center;gap:7px;
+  background:rgba(7,9,15,.55);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border:1px solid var(--blueBd);
+  border-radius:999px;
+  padding:6px 12px 6px 8px;
+}
+.badge-dot{
+  width:7px;height:7px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 0 2px rgba(34,197,94,.22);
+  animation:pulse 2.2s ease infinite;
+}
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 0 2px rgba(34,197,94,.22);}
+  50%{box-shadow:0 0 0 5px rgba(34,197,94,.10);}
+}
+.badge-label{font-size:11px;font-weight:500;color:rgba(255,255,255,.82);letter-spacing:.4px;}
+
+/* Logo iCard — haut droite, sans encadrement */
+.logo-hero{
+  position:absolute;
+  top:16px;right:16px;
   z-index:5;
 }
-
-.photo-float img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:top center;   /* 🔥 RECADRAGE VERS LE HAUT */
+.logo-hero img{
+  height:32px;
+  width:auto;
+  object-fit:contain;
+  opacity:.90;
+  filter:drop-shadow(0 2px 8px rgba(0,0,0,.5));
 }
 
-/* CARD */
-.card{
-  width:100%;
-  max-width:420px;
-  background:linear-gradient(145deg,rgba(15,23,42,.98),rgba(15,23,42,.94));
-  border-radius:24px;
-  padding:100px 22px 24px;
-  box-shadow:0 22px 60px rgba(15,23,42,.9),0 0 0 1px rgba(148,163,184,.18);
-  position:relative;
-  margin-bottom:40px;
+/* Infos bas de hero */
+.hero-bottom{
+  position:absolute;
+  left:0;right:0;bottom:0;
+  padding:18px 18px 22px;
+  z-index:5;
 }
-
-/* TEXT */
-.icard-badge{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:.12em;
-  color:var(--text-muted);
-  padding:4px 10px;
-  border-radius:999px;
-  background:rgba(15,23,42,.85);
-  border:1px solid var(--border);
-  margin-bottom:14px;
-}
-
-.icard-dot{
-  width:9px;
-  height:9px;
-  border-radius:999px;
-  background:radial-gradient(circle at 30% 30%, #e5e7eb, #22c55e);
-  box-shadow:0 0 12px rgba(34,197,94,.9);
-}
-
-.name-block h1{
-  font-size:24px;
+.name{
+  font-size:30px;
   font-weight:600;
-  margin-bottom:6px;
+  line-height:1.08;
+  letter-spacing:-.3px;
+  color:#fff;
+  text-shadow:0 2px 20px rgba(0,0,0,.5);
 }
-
-.name-block p{
-  font-size:14px;
-  color:var(--text-muted);
-  margin-bottom:14px;
-}
-
-.chip{
-  display:inline-block;
-  font-size:11px;
-  padding:5px 12px;
-  border-radius:999px;
-  background:var(--accent-soft);
-  border:1px solid rgba(37,99,235,.5);
-  color:#bfdbfe;
-  text-decoration:none;
-  margin-bottom:16px;
-}
-
-.divider{
-  border-top:1px solid var(--border);
-  margin:12px 0 14px;
-}
-
-.info{
-  font-size:14px;
-  color:var(--text-muted);
-  margin-bottom:16px;
+.role{
+  margin-top:5px;
+  font-size:12px;
+  font-weight:400;
+  color:rgba(255,255,255,.72);
+  letter-spacing:.2px;
   line-height:1.5;
 }
-
-/* CONTACT */
-.contact-item{
-  display:flex;
-  gap:12px;
-  font-size:14px;
-  margin-bottom:10px;
-}
-
-.contact-label{
-  min-width:90px;
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:.08em;
-  color:#6b7280;
-}
-
-.contact-value a{
-  color:#d1d5db;
-  text-decoration:none;
-}
-
-/* BUTTONS */
-.buttons{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin:18px 0 10px;
-}
-
-.btn{
+.company-pill{
+  display:inline-flex;align-items:center;gap:6px;
+  margin-top:10px;
+  background:var(--blueBg);
+  border:1px solid var(--blueBd);
   border-radius:999px;
-  padding:10px 12px;
+  padding:4px 11px 4px 8px;
+}
+.company-dot{width:6px;height:6px;border-radius:50%;background:var(--blue2);}
+.company-name{font-size:11.5px;font-weight:500;color:var(--blue2);letter-spacing:.3px;}
+
+/* ── BODY ── */
+.body{padding:20px 16px 32px;}
+
+.section-label{
+  font-size:10px;font-weight:600;letter-spacing:1.4px;
+  color:var(--hint);text-transform:uppercase;margin-bottom:10px;
+}
+
+/* Cards coordonnées */
+.links{display:flex;flex-direction:column;gap:9px;margin-bottom:20px;}
+.lcard{
+  display:flex;align-items:center;gap:12px;
+  padding:13px 14px;
+  background:var(--surface);
+  border:1px solid var(--stroke);
+  border-radius:16px;
+  text-decoration:none;color:var(--text);
+  transition:background .14s, border-color .14s, transform .14s;
+}
+.lcard:hover{background:rgba(255,255,255,.09);border-color:var(--stroke2);transform:translateY(-1px);}
+.lico{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;flex:0 0 38px;}
+.lico svg{width:18px;height:18px;fill:#fff;}
+.lico-email{background:rgba(239,68,68,.16);border:1px solid rgba(239,68,68,.28);}
+.lico-phone{background:rgba(34,197,94,.16);border:1px solid rgba(34,197,94,.28);}
+.lico-linkedin{background:var(--blueBg);border:1px solid var(--blueBd);}
+.lico-web{background:rgba(34,211,238,.13);border:1px solid rgba(34,211,238,.24);}
+.ltxt{flex:1;min-width:0;}
+.ltitle{font-size:13.5px;font-weight:600;line-height:1.1;}
+.lsub{font-size:11px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.lchev{width:16px;height:16px;opacity:.45;flex:0 0 16px;}
+
+/* Séparateur + note */
+.sep{
+  width:32px;height:1px;
+  background:linear-gradient(90deg,var(--blue),transparent);
+  margin:18px 0;
+}
+.note{
   font-size:13px;
-  font-weight:500;
-  border:0;
-  cursor:pointer;
-  text-decoration:none;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  font-weight:400;
+  font-style:italic;
+  color:rgba(240,242,248,.60);
+  line-height:1.6;
   text-align:center;
-  white-space:nowrap;
-  width:100%;
+  padding:0 8px;
 }
 
-.btn-primary{
-  background:linear-gradient(135deg,#2563eb,#1d4ed8);
-  color:#fff;
+/* CTA */
+.cta-wrap{margin-top:18px;}
+.cta{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;padding:15px 18px;border-radius:999px;
+  background:linear-gradient(135deg, rgba(59,111,212,.80), rgba(59,111,212,.60));
+  border:1px solid rgba(59,111,212,.55);
+  color:#fff;text-decoration:none;
+  font-weight:600;font-size:14px;letter-spacing:.3px;
+  box-shadow:0 8px 28px rgba(59,111,212,.25);
+  transition:background .15s, box-shadow .15s;
 }
-
-.btn-ghost{
-  background:rgba(15,23,42,.7);
-  border:1px solid rgba(148,163,184,.6);
-  color:#fff;
+.cta:hover{
+  background:linear-gradient(135deg, rgba(59,111,212,.95), rgba(59,111,212,.75));
+  box-shadow:0 12px 36px rgba(59,111,212,.38);
 }
+.cta svg{width:18px;height:18px;fill:#fff;}
 
-/* FOOTER */
+/* Footer avec logo DBC agrandi */
+.footer-wrap{
+  margin-top:24px;
+  padding-top:16px;
+  border-top:1px solid var(--stroke);
+}
+.logo-dbc-footer{
+  display:flex;
+  justify-content:center;
+  margin-bottom:16px;
+}
+.logo-dbc-footer img{
+  height:90px;
+  width:auto;
+  object-fit:contain;
+  filter:drop-shadow(0 6px 18px rgba(0,0,0,.5));
+  opacity:.94;
+}
 .footer{
   display:flex;
   justify-content:space-between;
-  font-size:11px;
-  color:#6b7280;
+  align-items:center;
+  font-size:10.5px;
+  color:var(--hint);
 }
 
-/* LOGO */
-.logo-footer{
-  width:100%;
-  max-width:420px;
-  margin-top:10px;
-}
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+.animate{opacity:0;animation:fadeUp .5s ease forwards;}
+.a1{animation-delay:.08s;}.a2{animation-delay:.16s;}.a3{animation-delay:.24s;}
+.a4{animation-delay:.32s;}.a5{animation-delay:.40s;}.a6{animation-delay:.50s;}
+.a7{animation-delay:.58s;}.a8{animation-delay:.66s;}
 
-.logo-footer img{
-  width:100%;
-  height:120px;
-  object-fit:contain;
-  display:block;
-  filter:drop-shadow(0 18px 30px rgba(0,0,0,.6));
+@media(min-width:460px){
+  body{padding:28px 16px 48px;align-items:flex-start;}
+  .wrap{border-radius:var(--r);overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.7);}
+  .hero{border-radius:var(--r) var(--r) 0 0;}
 }
+@media(max-width:380px){.name{font-size:26px;}}
 </style>
 </head>
-
 <body>
+<div class="wrap">
 
-<div class="photo-float">
-  <img src="Photo.jpg" alt="Emre ERGUN">
-</div>
+  <!-- HERO -->
+  <div class="hero">
+    <img class="photo" src="Photo.jpg" alt="Emre Ergun"/>
+    <div class="hero-fade"></div>
 
-<div class="card">
+    <!-- Badge statut — haut gauche -->
+    <div class="badge-top animate a1">
+      <div class="badge-dot"></div>
+      <span class="badge-label">Acheteur</span>
+    </div>
 
-  <div class="icard-badge">
-    <span class="icard-dot"></span>
-    <span>iCard • Carte de visite</span>
-  </div>
+    <!-- Logo iCard — haut droite, sans encadrement -->
+    <div class="logo-hero animate a1">
+      <img src="5.png" alt="iCard"/>
+    </div>
 
-  <div class="name-block">
-    <h1>Emre ERGUN</h1>
-    <p>Acheteur chez Demathieu Bard Construction</p>
-  </div>
-
-  <a class="chip" href="https://icard-contact.github.io/Emre-ERGUN/emre.vcf">Tap to save</a>
-
-  <div class="divider"></div>
-
-  <p class="info">
-    N° client : 260110 0001<br>
-    Restons en contact pour de futures collaborations.
-  </p>
-
-  <div class="contact-item">
-    <div class="contact-label">TÉL</div>
-    <div class="contact-value">
-      <a href="tel:+33786893127">+33 7 86 89 31 27</a>
+    <div class="hero-bottom">
+      <div class="name animate a2">Emre Ergun</div>
+      <div class="role animate a3">Acheteur · Demathieu Bard Construction</div>
+      <div class="company-pill animate a3">
+        <div class="company-dot"></div>
+        <span class="company-name">Demathieu Bard Construction</span>
+      </div>
     </div>
   </div>
 
-  <div class="contact-item">
-    <div class="contact-label">EMAIL</div>
-    <div class="contact-value">
-      <a href="mailto:emre.ergun@demathieu-bard.fr">emre.ergun@demathieu-bard.fr</a>
-    </div>
-  </div>
+  <!-- BODY -->
+  <div class="body">
 
-  <div class="contact-item">
-    <div class="contact-label">LINKEDIN</div>
-    <div class="contact-value">
-      <a href="https://www.linkedin.com/in/emre-ergun-bb212422a/" target="_blank">
-        Emre ERGUN
+    <div class="section-label animate a4">Coordonnées</div>
+
+    <div class="links">
+      <a class="lcard animate a4" href="mailto:emre.ergun@demathieu-bard.fr">
+        <div class="lico lico-email"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+        <div class="ltxt"><div class="ltitle">Email</div><div class="lsub">emre.ergun@demathieu-bard.fr</div></div>
+        <svg class="lchev" viewBox="0 0 24 24"><path fill="white" d="M9.29 6.71a1 1 0 011.42 0l5 5a1 1 0 010 1.42l-5 5a1 1 0 11-1.42-1.42L13.59 12 9.29 7.71a1 1 0 010-1.42z"/></svg>
+      </a>
+      <a class="lcard animate a5" href="tel:+33786893127">
+        <div class="lico lico-phone"><svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg></div>
+        <div class="ltxt"><div class="ltitle">Téléphone</div><div class="lsub">+33 7 86 89 31 27</div></div>
+        <svg class="lchev" viewBox="0 0 24 24"><path fill="white" d="M9.29 6.71a1 1 0 011.42 0l5 5a1 1 0 010 1.42l-5 5a1 1 0 11-1.42-1.42L13.59 12 9.29 7.71a1 1 0 010-1.42z"/></svg>
+      </a>
+      <a class="lcard animate a5" href="https://www.linkedin.com/in/emre-ergun-bb212422a/" target="_blank" rel="noreferrer">
+        <div class="lico lico-linkedin"><svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 23.5h4V7.98h-4V23.5zM8 7.98h3.84v2.12h.05c.53-1.01 1.83-2.08 3.77-2.08 4.03 0 4.77 2.65 4.77 6.1v9.38h-4v-8.32c0-1.98-.04-4.52-2.75-4.52-2.75 0-3.17 2.15-3.17 4.38v8.46H8V7.98z"/></svg></div>
+        <div class="ltxt"><div class="ltitle">LinkedIn</div><div class="lsub">Voir le profil de Emre Ergun</div></div>
+        <svg class="lchev" viewBox="0 0 24 24"><path fill="white" d="M9.29 6.71a1 1 0 011.42 0l5 5a1 1 0 010 1.42l-5 5a1 1 0 11-1.42-1.42L13.59 12 9.29 7.71a1 1 0 010-1.42z"/></svg>
+      </a>
+      <a class="lcard animate a6" href="https://icard-contact.github.io/Emre-ERGUN/" target="_blank" rel="noreferrer">
+        <div class="lico lico-web"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm7.93 9h-3.17a15.6 15.6 0 00-1.12-5.05A8.02 8.02 0 0119.93 11zM12 4c.9 1.28 1.6 3.1 1.99 5H10.01C10.4 7.1 11.1 5.28 12 4zM4.07 13h3.17c.2 1.78.7 3.5 1.12 5.05A8.02 8.02 0 014.07 13zm3.17-2H4.07a8.02 8.02 0 014.29-5.05c-.5 1.55-.92 3.27-1.12 5.05zM12 20c-.9-1.28-1.6-3.1-1.99-5h3.98c-.39 1.9-1.09 3.72-1.99 5zm3.76-2.95c.5-1.55.92-3.27 1.12-5.05h3.17a8.02 8.02 0 01-4.29 5.05zM7.24 13h9.52c-.2 1.72-.67 3.42-1.12 5H8.36c-.45-1.58-.92-3.28-1.12-5zM8.36 6h7.28c.45 1.58.92 3.28 1.12 5H7.24c.2-1.72.67-3.42 1.12-5z"/></svg></div>
+        <div class="ltxt"><div class="ltitle">Site web</div><div class="lsub">icard-contact.github.io/Emre-ERGUN</div></div>
+        <svg class="lchev" viewBox="0 0 24 24"><path fill="white" d="M9.29 6.71a1 1 0 011.42 0l5 5a1 1 0 010 1.42l-5 5a1 1 0 11-1.42-1.42L13.59 12 9.29 7.71a1 1 0 010-1.42z"/></svg>
       </a>
     </div>
-  </div>
 
-  <div class="contact-item">
-    <div class="contact-label">SITE</div>
-    <div class="contact-value">
-      <a href="https://icard-contact.github.io/Emre-ERGUN/" target="_blank">
-        https://icard-contact.github.io/Emre-ERGUN/
+    <div class="sep animate a6"></div>
+    <div class="note animate a6">Restons en contact pour de futures collaborations.</div>
+
+    <div class="cta-wrap animate a7">
+      <a class="cta" href="https://icard-contact.github.io/Emre-ERGUN/emre.vcf">
+        <svg viewBox="0 0 24 24"><path d="M15 14c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-8 6v-1c0-2.21 3.58-4 8-4 .7 0 1.38.05 2.02.14-.65.64-1.02 1.53-1.02 2.46V20H7zm14-3v-2h-2v2h-2v2h2v2h2v-2h2v-2h-2zM7 10c0 2.21 1.79 4 4 4 .75 0 1.46-.21 2.06-.57C12.4 12.48 12 11.28 12 10c0-1.28.4-2.48 1.06-3.43C12.46 6.21 11.75 6 11 6c-2.21 0-4 1.79-4 4z"/></svg>
+        Ajouter à mes contacts
       </a>
     </div>
-  </div>
 
-  <div class="buttons">
-    <a class="btn btn-primary" href="https://icard-contact.github.io/Emre-ERGUN/emre.vcf">
-      Ajouter à mes contacts
-    </a>
-    <a class="btn btn-ghost" href="mailto:emre.ergun@demathieu-bard.fr">
-      Envoyer un email
-    </a>
-  </div>
+    <!-- Footer avec logo DBC agrandi -->
+    <div class="footer-wrap animate a8">
+      <div class="logo-dbc-footer">
+        <img src="LOGO%20DBC.png" alt="Demathieu Bard Construction"/>
+      </div>
+      <div class="footer">
+        <span>© iCard</span>
+        <span>Propulsé par iCard</span>
+      </div>
+    </div>
 
-  <div class="footer">
-    <span>© iCard</span>
-    <span>Propulsé par iCard</span>
   </div>
-
 </div>
-
-<div class="logo-footer">
-  <img src="5.png" alt="Logo iCard">
-</div>
-
 </body>
 </html>
